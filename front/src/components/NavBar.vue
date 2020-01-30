@@ -12,6 +12,11 @@
       <li class="nav-item active">
         <a class="link" href="/post">Publica</a>
       </li>
+      <li>
+        <b-button variant="outline-info" class="mb-2" v-on:click="logout">
+      <b-icon icon="power"></b-icon> Logout
+    </b-button>
+      </li>
     </ul>
 </nav>
 </header>
@@ -23,6 +28,12 @@ export default {
   data () {
     return {
 
+    }
+  },
+  methods: {
+    logout(){
+      localStorage.removeItem('token')
+      this.$router.push('/')
     }
   }
 }

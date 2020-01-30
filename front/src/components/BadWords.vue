@@ -6,7 +6,7 @@
                 <tr>
                     <th scope="col">Palabra</th>
                     <th scope="col">Nivel</th>
-                    <th scope="col">Acción</th>
+                    <th scope="col">Gestionar</th>
                 </tr>
             </thead>
             <tbody>

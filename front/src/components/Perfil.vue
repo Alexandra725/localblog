@@ -2,43 +2,48 @@
     <div>
         <NavBar></Navbar>
         <h1>Bienvenido, {{user.name}}</h1>
-        <h2>Tus datos</h2>
-        <b-row>
-            <b-col sm="4">
-                <b-input-group prepend="Username" class="mt-3">
-                    <a class="username">{{user.nickName}}</a>
-                </b-input-group>
-            </b-col>
-            <b-col sm="4">
-                <b-input-group prepend="Name" class="mt-3">
-                    <a class="name">{{user.name}}</a>
-                </b-input-group>
-            </b-col>
-            <b-col sm="4">
-                <b-input-group prepend="Lastname" class="mt-3">
-                    <a class="lastname">{{user.lastName}}</a>
-                </b-input-group>
-            </b-col>
-        </b-row>
-        <div id="posts">
-            <router-link to="/post">
-                <b-button variant="light" class="publication">Escribe tu publicación</b-button>
-                <b-button variant="dark" v-if="user.role ==='ADMIN'">Palabras reservadas</b-button>
+            <b-row >
+                <b-col class="profile">
+                    <b-card bg-variant="secondary" text-variant="white" header="DATOS" class="text-center">
+                        <b-card-text bg-variant="primary" text-variant="white" header="Primary" class="text-center">
+                            <b-input-group prepend="Username" class="mt-3">
+                                <a class="username">{{user.nickName}}</a>
+                            </b-input-group>
+                            <b-input-group prepend="Name" class="mt-3">
+                                <a class="name">{{user.name}}</a>
+                            </b-input-group>
 
-            </router-link>
-            <h2>Tus publicaciones</h2>
-            <b-card bg-variant="white" text-variant="dark" v-for="(post) in posts" v-bind:key="post._id">
-                <p>{{post.title}}</p>
-                <router-link :to="`/post/${post._id}`">
-                    <b-button variant="light">Ver más</b-button>
-                </router-link>
-                <b-button variant="light" v-on:click="deleteData(post._id)">Eliminar</b-button>
-                <router-link class="router" :to="`/edit/${post._id}`">
-                <b-button variant="dark">Editar</b-button>
+                            <b-input-group prepend="Lastname" class="mt-3">
+                                <a class="lastname">{{user.lastName}}</a>
+                            </b-input-group>
+                        </b-card-text>
+                    </b-card>
 
-                </router-link>
-            </b-card>
-        </div>
+                </b-col>
+
+                <b-col class="posts">
+                    <router-link to="/post">
+                        <b-button variant="light" class="publication">Escribe tu publicación</b-button>
+                    </router-link>
+
+                    <router-link to="/badwords">
+                        <b-button variant="dark" v-if="user.role ==='ADMIN'">Palabras reservadas</b-button>
+                    </router-link>
+
+                    <h2>Tus publicaciones</h2>
+                    <b-card class="card" bg-variant="white" text-variant="dark" v-for="(post) in posts"
+                        v-bind:key="post._id">
+                        <p>{{post.title}}</p>
+                        <router-link :to="`/post/${post._id}`">
+                            <b-button variant="light">Ver más</b-button>
+                        </router-link>
+                        <b-button variant="light" v-on:click="deleteData(post._id)">Eliminar</b-button>
+                        <router-link class="router" :to="`/edit/${post._id}`">
+                            <b-button variant="dark">Editar</b-button>
+                        </router-link>
+                    </b-card>
+                </b-col>
+            </b-row>
     </div>
 
 </template>
@@ -63,7 +68,7 @@
                 email: '',
                 posts: [],
                 postId: '',
-                
+
             }
         },
 
@@ -96,9 +101,9 @@
                         this.postId = response.data.posts._id
                         this.user = response.data.user;
                         this.posts = response.data.posts;
-                                    /* eslint-disable no-console */
-            console.log('error  ', this.user.role);
-            /* eslint-enable no-console */
+                        /* eslint-disable no-console */
+                        console.log('error  ', this.user.role);
+                        /* eslint-enable no-console */
                     }).catch(err => {
                         this.error = err
                     });
@@ -119,15 +124,18 @@
 
     @media (min-width: 1200px) {
 
+        .card {
+            width: 700px;
+        }
+
         h2 {
             padding: 20px;
             text-align: initial;
         }
 
-        #posts {
+        .posts {
             margin-top: 50px;
-            width: auto;
-            text-align: initial
+            text-align: initial;
         }
 
         b-text {
@@ -143,6 +151,10 @@
         a {
             font-size: 20px;
             padding: 5px;
+        }
+        .profile{
+            margin-top: 50px;
+            margin-left: 40px;
         }
 
     }
