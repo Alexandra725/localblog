@@ -32,7 +32,6 @@ router.post('/post', tokenVerify, async (req, res) => {
     };
     await req.app.locals.dbo.collection('posts').insertOne(newPost);
     res.send(newPost);
-    console.log(req.body.title);
 });
 
 //#endregion

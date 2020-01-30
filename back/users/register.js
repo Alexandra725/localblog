@@ -16,7 +16,7 @@ router.post('/register',(req, res) => {
         nickName: data.nickName,
         email: data.email,
         pass: bcryptjs.hashSync(data.pass),
-        role: 'PUBLI'
+        role: data.role || 'PUBLI'
     };
     req.app.locals.dbo.collection('users').insertOne(newUser);
     res.send(newUser);

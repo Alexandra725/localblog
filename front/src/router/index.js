@@ -45,6 +45,11 @@ const routes = [
     path:'/edit/:id',
     name:'editpost',
     component: () => import('../components/EditPost.vue')
+  },
+  {
+    path:'/badwords',
+    name:'badwords',
+    component: () => import('../components/BadWords.vue')
 
   }
 ]

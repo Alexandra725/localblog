@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon --watch app.js --watch routes/post.js --watch routes/comments.js --watch functions/validator.js --watch users/auth.js --watch users/register.js  --watch users/users.js --watch middleware/publiRole.js",
+    "start": "nodemon --watch app.js --watch routes/post.js --watch routes/comments.js --watch routes/offensiveWords.js --watch functions/validator.js --watch users/auth.js --watch users/register.js  --watch users/users.js --watch middleware/publiRole.js",
     "test": "jest"
   },
   "author": "",

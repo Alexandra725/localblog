@@ -20,8 +20,9 @@ app.all("/*", function (req, res, next) {
 });
 
 
-app.use('/', require('./routes/post'));
-app.use('/', require('./routes/comments'));
+app.use('/', require('./routes/post.js'));
+app.use('/', require('./routes/comments.js'));
+app.use('/', require('./routes/offensiveWords.js'));
 app.use('/', require('./users/auth.js'));
 app.use('/', require('./users/register.js'));
 app.use('/', require('./users/users.js'))

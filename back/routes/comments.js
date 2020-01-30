@@ -37,7 +37,6 @@ router.post('/post/:id/comments',tokenVerify, async (req,res) => {
 //#endregion
 
 //#region  GET de post con los comentarios
-//PROBAR PORQUE NO HACE FALTA ??????
 router.get('/comments', async (req, res) => {
      await req.app.locals.dbo.collection('comments').find().toArray((err, comments) => {
         res.send(comments);

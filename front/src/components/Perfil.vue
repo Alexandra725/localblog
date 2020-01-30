@@ -67,8 +67,8 @@ export default {
      axios.delete(`http://localhost:3000/post/${id}`, config)
       .then(()=> {
           for(let i = 0; i< this.posts.length; i++){
-              if(this.posts[i]._id === id)
-              this.posts.splice(i, 1)
+              if(this.posts[i]._id === id);
+              this.posts.splice(i, 1);
           }
       }
         ).catch()
