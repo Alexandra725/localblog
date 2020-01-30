@@ -104,6 +104,7 @@
                         for (let i = 0; i < this.words.length; i++) {
                             if (this.words[i]._id === id);
                             this.words.splice(i, 1);
+                            this.getBadWords()
                         }
                     }).catch(err => {
                         this.error = err
@@ -143,36 +144,36 @@
                 }
 
                 axios.put(`http://localhost:3000/badwords/${id}`, data, config)
-                    .then(response => {
-                        /* eslint-disable no-console */
-                        console.log("axios.put", response.data)
-                        /* eslint-enable no-console */
-                    })
+                    .then(
+                        this.getBadWords()
+                    )
                     .catch(err => {
                         /* eslint-disable no-console */
                         console.log("error", err)
                         /* eslint-enable no-console */
                     })
 
+            },
+            getBadWords() {
+
+                let token = localStorage.getItem('token');
+                const config = {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                };
+                axios.get('http://localhost:3000/badwords', config)
+                    .then(response => {
+                        this.words = response.data
+                    }).catch(err => {
+                        this.error = err
+                    });
             }
         },
 
         created() {
-            let token = localStorage.getItem('token');
-            const config = {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            };
-            axios.get('http://localhost:3000/badwords', config)
-                .then(response => {
-                    this.words = response.data
-                    /* eslint-disable no-console */
-                    console.log("get", response.data)
-                    /* eslint-enable no-console */
-                }).catch(err => {
-                    this.error = err
-                });
+            this.getBadWords();
+
         }
     }
 </script>

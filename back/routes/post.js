@@ -90,7 +90,7 @@ router.delete('/post/:id', tokenVerify, publiRole, async (req, res) => {
 
 //#region  PUT de un post
 
-router.put('/posts/:id', tokenVerify, publiRole, async (req, res) => {
+router.put('/post/:id', tokenVerify, publiRole, async (req, res) => {
     const id = req.params.id;
     await req.app.locals.dbo.collection('posts').findOneAndUpdate({_id: new ObjectId(id)},{
         $set: req.body},{returnOriginal: false}, (err, response) => {
