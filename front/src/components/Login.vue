@@ -5,7 +5,12 @@
      <div class="row justify-content-md-center">
      <div class="col-md-6">
       <div class='login-form'>
+
+
           <form>
+    <b-alert v-if="error" variant="danger" show  dismissible>
+      Tus datos son incorrectos
+    </b-alert>
           <div class="form-group">
             <label for="InputEmail1">Email address</label>
             <b-input v-model="email" class="form-control" id="InputEmail1" aria-describedby="emailHelp" placeholder="Enter email"></b-input>
@@ -45,10 +50,13 @@
       return {
         email: '',
         pass: '',
-        error: ''
+        error: false
       }
     },
     methods: {
+      alertError() {
+        this.error = true
+      },
 
       login() {
         axios.post('http://localhost:3000/login', {
@@ -62,7 +70,7 @@
             this.$router.push('/posts')
           }).catch(err => {
             this.error = err;
-            alert('Datos incorrectos!')
+            this.alertError();
           })
       }
 

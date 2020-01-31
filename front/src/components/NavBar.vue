@@ -11,13 +11,13 @@
       <li class="nav-item active">
         <a class="nav-link" href="/posts">Posts <span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/perfil">Perfil</a>
+      <li class="nav-item" >
+        <a class="nav-link" href="/perfil" v-if="token">Perfil</a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
-      <a class="btn btn-success mr-sm-2" href="/post" role="button">Publicar</a>
-      <b-button variant="btn btn-outline-secondary my-2 my-sm-0" type="submit" v-on:click="logout">Logout</b-button>
+      <a class="btn btn-success mr-sm-2" href="/post" role="button" v-if="token">Publicar</a>
+      <b-button variant="btn btn-outline-secondary my-2 my-sm-0" type="submit" v-on:click="logout" v-if="token">Logout</b-button>
     </form>
   </div>
 </div>
@@ -29,14 +29,21 @@ export default {
   name:'NavBar',
   data () {
     return {
-
+      token: true
     }
   },
   methods: {
     logout(){
       localStorage.removeItem('token')
       this.$router.push('/')
+    },
+    verifyToken() {
+      if(localStorage.getItem('token') === undefined || localStorage.getItem('token')=== null)
+      this.token = false;
     }
+  },
+  created(){
+    this.verifyToken();
   }
 }
 </script>
