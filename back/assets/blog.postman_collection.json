@@ -1,0 +1,530 @@
+{
+	"info": {
+		"_postman_id": "ebe2b0f3-dd5c-4df1-accf-38834f36bd8d",
+		"name": "blog",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "ALL POSTS",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Ronald\",\n\t\"nickname\": \"Roni\",\n\t\"title\": \"Una mañana\",\n\t\"text\": \"Una bella mañana de invierno\",\n\t\"comms\": \"amazing\",\n\t\"comms\": \"awesome\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POSTS DE UN USUARIO",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjVlMjA4YzZiYTI0YjMzMTMxNzI1Y2NkZCIsIm5hbWUiOiJ1c2VyMTUiLCJsYXN0TmFtZSI6InVzZXIxNSIsIm5pY2tOYW1lIjoidXNlcjE1IiwiZW1haWwiOiJ1c2VyMTVAYS5hIiwicGFzcyI6IiQyYSQxMCRsSW5kM0c0TzQzYnNSamo2UkFiNi5lZk1CdVRQdnF6ZG51TlEzN0x0dGtsdWpraGJZVGJFMiIsInJvbGUiOiJQVUJMSSJ9LCJpYXQiOjE1NzkyNTAzMzUsImV4cCI6MTU4MTg0MjMzNX0.JM6IS-pDjBP7gJ-F7vpHWT8ZGFLKea6x5gVHZ3BzST0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/perfil/posts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"perfil",
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ONE POST",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/5e010ef076b10424798d30eb",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"5e010ef076b10424798d30eb"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ONE POST",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"alexandra\",\n\t\"nickname\": \"alex\"\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/5e04edbc68fc8a6a68499328",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"5e04edbc68fc8a6a68499328"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "COMMENT",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nickname\": \"alexa\",\n\t\"text\": \" deberia borrarse \"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/5e08b654e09f094182d6930c/comments",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"5e08b654e09f094182d6930c",
+						"comments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "COMMENT'S POST",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/comments/5e089209c30cab1b0bcc2ce2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"comments",
+						"5e089209c30cab1b0bcc2ce2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "COMMENT",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nickname\": \"hdhhdd\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/comments/5e089209c30cab1b0bcc2ce2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"comments",
+						"5e089209c30cab1b0bcc2ce2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "COMMENT",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/comments/5e08900b5b6d4f17c1319d13",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"comments",
+						"5e08900b5b6d4f17c1319d13"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "REGISTER",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlMWM5ZDM0YzA2MzBkMjcyZmI1YTk2NiIsImVtYWlsIjoiYWJjZEBhLmEiLCJpYXQiOjE1Nzg5MzM5MTYsImV4cCI6MTU4NDExNzkxNn0.oB1MJ_ZwdNjhV9f4n6YjbHoFtIfzopXAUmKFpJnNOIM",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"user15\",\n\t\"lastName\": \"user15\",\n\t\"nickName\": \"user15\",\n\t\"email\": \"user15@a.a\",\n\t\"pass\": \"alex\",\n\t\"role\": \"PUBLI\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LOGIN",
+			"request": {
+				"auth": {
+					"type": "bearer"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlMWM5ZDM0YzA2MzBkMjcyZmI1YTk2NiIsImVtYWlsIjoiYWJjZEBhLmEiLCJpYXQiOjE1Nzg5MzM5MTYsImV4cCI6MTU4NDExNzkxNn0.oB1MJ_ZwdNjhV9f4n6YjbHoFtIfzopXAUmKFpJnNOIM",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"user12@a.a\",\n\t\"pass\": \"alex\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PERFIL",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjVlMWVmNmJkYzk1N2MxM2FkOGM0NTQwNiIsIm5hbWUiOiJ1c2VyMTIiLCJsYXN0TmFtZSI6InVzZXIxMiIsIm5pY2tOYW1lIjoidXNlcjEyIiwiZW1haWwiOiJ1c2VyMTJAYS5hIiwicGFzcyI6IiQyYSQxMCR3bzV0cEpUOUtWNVVHWC9QdEw3VmguVW9RbXVhOHhkb3hJTGM4dVlEd1dxeUU5TkVKRnVXdSIsInJvbGUiOiJBRE1JTiJ9LCJpYXQiOjE1NzkxNzA1ODQsImV4cCI6MTU4MTc2MjU4NH0.WD-E6xt5fjFEpR4vVwytew_uMoRxLX6exM76DwUlfVw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjVlMWY1OGM1MzQ2NmViMWFiODBhMGNkOSIsIm5hbWUiOiJ1c2VyMTMiLCJsYXN0TmFtZSI6InVzZXIxMyIsIm5pY2tOYW1lIjoidXNlcjEzIiwiZW1haWwiOiJ1c2VyMTNAYS5hIiwicGFzcyI6IiQyYSQxMCRDSjRwcUp0Lm9pWGhCRFB1WVhTb3pPQ1pkOTVzejBPbFdvMHE4LktubTdLYzBIZktIRTd4aSIsInJvbGUiOiJQVUJMSSJ9LCJpYXQiOjE1NzkxNjQ5NTEsImV4cCI6MTU4MTc1Njk1MX0.ZkH5QBPBMSV7CKEHuKyjHpJ34vvwDgmmJwoStvroqdE",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/perfil",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"perfil"
+					],
+					"query": [
+						{
+							"key": "Authorization",
+							"value": "yJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjVlMWVlNWExODM0YjJjMjIwMzg2NzBkMiIsIm5hbWUiOiJ1c2VyOSIsImxhc3ROYW1lIjpudWxsLCJuaWNrTmFtZSI6InVzZXI5IiwiZW1haWwiOiJ1c2VyOUBhLmEiLCJwYXNzIjoiJDJhJDEwJGF3R0pKc3NRM3RRMnQ3SFo2LlZKQnVRVjdSNVZ4U3BTUmFUaGpITHVOMHZPLllrOWVZd0tPIiwicm9sZSI6IkFETUlOIn0sImlhdCI6MTU3OTA5MDAwNSwiZXhwIjoxNTgxNjgyMDA1fQ.GmGKnlwvP4cFIc5Gj_-pwRrhRmP_WI19cJo_AVBzr_o",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "WORDS",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/badwords",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"badwords"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "WORD",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjVlMzE2OTZjNTVlNTlmNDEyMmUwYWVkNSIsIm5hbWUiOiJVc2VyMSIsImxhc3ROYW1lIjoidXNlcjEiLCJuaWNrTmFtZSI6InVzZXIxIiwiZW1haWwiOiJ1c2VyMUB1c2VyLmNvbSIsInBhc3MiOiIkMmEkMTAkb0dPaG81bWl4Tll3U1lFNi9WM2R1ZWouSkFmUW1lQVVKbkYwZzZKLmdtS0JtL0Rxb1BXMmkiLCJyb2xlIjoiUFVCTEkifSwiaWF0IjoxNTgwMzc3NzE3LCJleHAiOjE1ODI5Njk3MTd9.MU5REvpjeB3gTyVom7--CzSDy_LAZnypum-93Tkyqfs",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"word\": \"hola\",\n\t\"level\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/badwords",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"badwords"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "WORD",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjVlMzE2OTZjNTVlNTlmNDEyMmUwYWVkNSIsIm5hbWUiOiJVc2VyMSIsImxhc3ROYW1lIjoidXNlcjEiLCJuaWNrTmFtZSI6InVzZXIxIiwiZW1haWwiOiJ1c2VyMUB1c2VyLmNvbSIsInBhc3MiOiIkMmEkMTAkb0dPaG81bWl4Tll3U1lFNi9WM2R1ZWouSkFmUW1lQVVKbkYwZzZKLmdtS0JtL0Rxb1BXMmkiLCJyb2xlIjoiUFVCTEkifSwiaWF0IjoxNTgwMzc3NzE3LCJleHAiOjE1ODI5Njk3MTd9.MU5REvpjeB3gTyVom7--CzSDy_LAZnypum-93Tkyqfs",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"word\": \"kjkjhkjh\",\n\t\"level\": 2\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/badwords/5e32a69151213c347157dd93",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"badwords",
+						"5e32a69151213c347157dd93"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

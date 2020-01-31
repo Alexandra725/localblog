@@ -2,9 +2,9 @@ const express = require('express');
 const ObjectId = require('mongodb').ObjectId;
 const router = express.Router();
 
+
 const tokenVerify = require('../middleware/tokenVerify.js');
 const adminRole = require('../middleware/adminRole.js');
-
 //#region GET Palabras ofensivas
 
 router.get('/badwords', async (req, res) => {

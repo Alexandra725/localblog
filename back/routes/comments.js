@@ -4,8 +4,8 @@ const router = express.Router();
 
 const validator = require('../functions/validator');
 const tokenVerify = require('../middleware/tokenVerify.js');
-const publiRole = require('../middleware/publiRole.js');
 const autorComment = require('../middleware/adminPubliRole.js');
+const badWords = require('../functions/badWords.js')
 
 //#region  POST comentario en un post
 
@@ -22,15 +22,17 @@ router.post('/post/:id/comments',tokenVerify, async (req,res) => {
         date: date.toLocaleDateString("es-ES", options)
     };
     await req.app.locals.dbo.collection('dirtyWords').find().toArray((err, words)=>{
-
+       if(words.length === 0) {
+           words = badWords
         validator(newComm.text, words)
-        .then(()=>{
-            req.app.locals.dbo.collection('comments').insertOne(newComm);
+        .then(async ()=>{
+           await req.app.locals.dbo.collection('comments').insertOne(newComm);
             res.send(newComm);
         }).catch(err=>{
+            console.log('error',err)
             res.status(406).send(err);
-            console.log(newComm)
         });
+       }
     });
 });
 

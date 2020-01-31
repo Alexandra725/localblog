@@ -1,16 +1,17 @@
 <template>
   <div>
     <NavBar></NavBar>
+    
     <b-card id="title" bg-variant="light" text-variant="dark"  v-for="post in posts"
-      v-bind:title="post"
-      v-bind:_id="post"
       v-bind:key="post._id"
       >
       <p class = error v-if="error"> {{ error }}</p>
       <b-card-text id="text">
        {{post.title}}
+      <p>{{post.name}}</p>
       </b-card-text>
       <router-link class="router" :to="`/post/${post._id}`"><b-button variant="dark">post</b-button></router-link>
+    <p>{{post.date}}</p>
     </b-card>
   </div>
 </template>
@@ -29,21 +30,25 @@ export default {
       posts: [],
       error: '',
       title:'',
-      postId:''
+      postId:'',
+      user:''
     }
   },
   methods:{
-
-  },
-    created () {
-      axios.get('http://localhost:3000/posts')
+    getPosts() {
+axios.get('http://localhost:3000/posts')
       .then(response => {
           this.posts = response.data
           this.$store.dispatch('setPosts', this.posts)
      }).catch(error =>{
        this.error = error
      })
-    },
+    }
+
+  },
+    created () {
+      this.getPosts();
+    }
   }
 
 </script>

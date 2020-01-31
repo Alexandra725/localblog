@@ -5,8 +5,6 @@
      <div class="row justify-content-md-center">
      <div class="col-md-6">
       <div class='login-form'>
-
-
           <form>
     <b-alert v-if="error" variant="danger" show  dismissible>
       Tus datos son incorrectos
@@ -67,11 +65,11 @@
             const token = res.data.token
             localStorage.setItem("token", token)
             axios.defaults.headers.common['Authorization'] = token;
-            this.$router.push('/posts')
+            this.$router.push('/');
           }).catch(err => {
             this.error = err;
             this.alertError();
-          })
+          });
       }
 
     }

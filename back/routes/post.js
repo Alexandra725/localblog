@@ -11,6 +11,8 @@ router.get('/posts', async (req, res) => {
   await req.app.locals.dbo.collection('posts').find({}, {
         projection: {
             title: 1,
+            name: 1,
+            date:1,
             _id: 1
         }
     }).toArray((err, response) => {
@@ -22,13 +24,15 @@ router.get('/posts', async (req, res) => {
 //#region  Post de post nuevo
 
 router.post('/post', tokenVerify, async (req, res) => {
-
+    const date = new Date(); 
+    const options = {weekday: "long", year: "numeric", month: "long", day: "numeric"};
     const newPost = {
         userId: new ObjectId(req.user._id),
         name: req.user.name,
         nickname: req.user.nickName,
         title: req.body.title,
-        text: req.body.text
+        text: req.body.text,
+        date: date.toLocaleDateString("es-ES", options)
     };
     await req.app.locals.dbo.collection('posts').insertOne(newPost);
     res.send(newPost);

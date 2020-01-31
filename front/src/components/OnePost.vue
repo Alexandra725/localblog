@@ -18,6 +18,9 @@
                     <p>Publicar comentario</p>
                     <b-form-textarea class="comment" placeholder="Enter comment" v-model="textComment">
                     </b-form-textarea>
+                    <b-alert v-if="error" variant="danger" show dismissible>
+                      {{msgError}}:  Hay palabras que no estan permitidas. Revisa tu comentario
+                    </b-alert>
                     <b-button pill variant="outline-secondary" v-on:click="publicComment" class="button">Comentar
                     </b-button>
                 </b-col>
@@ -41,10 +44,15 @@
                 comments: '',
                 postId: '',
                 userName: '',
-                textComment: ''
+                textComment: '',
+                msgError:'',
+                error: false
             }
         },
         methods: {
+            alertError() {
+                this.error = true
+            },
             publicComment() {
                 let id = this.$route.params.id;
                 let token = localStorage.getItem('token');
@@ -53,29 +61,39 @@
                         Authorization: `Bearer ${token}`
                     }
                 };
-                axios.post(`http://localhost:3000/post/${id}/comments`, {
+                const data = {
                         text: this.textComment
-                    }, config)
-                    .then()
+                    }
+                axios.post(`http://localhost:3000/post/${id}/comments`,data ,config)
+                    .then(
+                        this.getOnePost()
+                    )
+                    .catch(err => {
+                                                /* eslint-disable no-console */
+                        console.log("err", err)
+                        /* eslint-enable no-console */
+                        this.msgError = err;
+                        this.alertError();
+                    });
+            },
+
+            getOnePost() {
+                let id = this.$route.params.id;
+                axios.get(`http://localhost:3000/post/${id}`)
+                    .then(response => {
+
+                        this.postId = response.data.post._id;
+                        this.post = response.data.post;
+                        this.comments = response.data.comments;
+                        this.userName = response.data.post.name
+                    })
                     .catch()
+
             }
 
         },
         created() {
-            let id = this.$route.params.id;
-            axios.get(`http://localhost:3000/post/${id}`)
-                .then(response => {
-
-                    this.postId = response.data.post._id;
-                    this.post = response.data.post;
-                    this.comments=response.data.comments;
-                    this.userName = response.data.post.name
-
-                    /* eslint-disable no-console */
-                    console.log("post", response.data.comments)
-                    /* eslint-enable no-console */
-                })
-                .catch()
+            this.getOnePost();
         }
     }
 </script>
@@ -99,7 +117,7 @@
 
         .comment {
             width: 200px;
-            height: 100px;
+            height: auto;
             background-color: rgb(181, 182, 182, 0.1);
             text-align: center;
         }

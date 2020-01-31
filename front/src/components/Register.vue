@@ -80,7 +80,7 @@ import NavBar from "./NavBar";
        nickName: this.nickName,
        pass: this.pass
      });
-     this.$router.push('/posts')
+     this.$router.push('/')
 
    }
   },

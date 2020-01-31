@@ -1,6 +1,9 @@
 <template>
     <div>
         <NavBar></Navbar>
+        <b-alert v-if="error" variant="danger" show dismissible>
+            {{msgError}}
+        </b-alert>
         <b-container class="bv-example-row">
             <b-row>
                 <b-col cols="10">
@@ -26,10 +29,15 @@
             return {
                 text: '',
                 title: '',
-                idPost: ''
+                idPost: '',
+                error: false,
+                msgError: ''
             }
         },
         methods: {
+            alertError() {
+                this.error = true
+            },
             editPost: function (id) {
                 let token = localStorage.getItem('token');
                 const config = {
@@ -46,21 +54,20 @@
                         this.getPost()
                     )
                     .catch(err => {
-                        /* eslint-disable no-console */
-                        console.log("error", err)
-                        /* eslint-enable no-console */
+                        this.msgError = err;
+                        this.alertError();
                     })
 
             },
             getPost() {
-            let id = this.$route.params.id;
-            axios.get(`http://localhost:3000/post/${id}`)
-                .then(response => {
-                    this.title = response.data.post.title;
-                    this.text = response.data.post.text;
-                    this.idPost = response.data.post._id;
-                })
-                .catch()
+                let id = this.$route.params.id;
+                axios.get(`http://localhost:3000/post/${id}`)
+                    .then(response => {
+                        this.title = response.data.post.title;
+                        this.text = response.data.post.text;
+                        this.idPost = response.data.post._id;
+                    })
+                    .catch()
             }
 
         },
