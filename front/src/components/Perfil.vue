@@ -1,9 +1,38 @@
 <template>
     <div>
         <NavBar></Navbar>
-        <h1>Bienvenido, {{user.name}}</h1>
-            <b-row >
-                <b-col class="profile">
+        <div class="container">
+          <div class="row">
+            <div class="col col-md-12">
+              <div class="user-welcome">
+                <h4 class="display-6">Bienvenido, {{user.name}}</h4>
+                <hr class="my-4">
+              </div>
+            </div>
+          </div>
+          <b-row>
+            <b-col class="col-md-8 posts">
+              <router-link to="/post">
+                <b-button variant="light" class="publication">Escribe tu publicación</b-button>
+              </router-link>
+              <router-link to="/badwords">
+                <b-button variant="dark" v-if="user.role ==='ADMIN'">Palabras reservadas</b-button>
+              </router-link>
+
+                <h5>Tus publicaciones</h5>
+                <b-card class="card" bg-variant="white" text-variant="dark" v-for="(post) in posts"
+                    v-bind:key="post._id">
+                    <p>{{post.title}}</p>
+                    <router-link :to="`/post/${post._id}`">
+                        <b-button variant="light">Ver más</b-button>
+                    </router-link>
+                    <b-button variant="light" v-on:click="deleteData(post._id)">Eliminar</b-button>
+                    <router-link class="router" :to="`/edit/${post._id}`">
+                        <b-button variant="dark">Editar</b-button>
+                    </router-link>
+                </b-card>
+            </b-col>
+                <b-col class=" col-md-4 profile">
                     <b-card bg-variant="secondary" text-variant="white" header="DATOS" class="text-center">
                         <b-card-text bg-variant="primary" text-variant="white" header="Primary" class="text-center">
                             <b-input-group prepend="Username" class="mt-3">
@@ -20,32 +49,9 @@
                     </b-card>
 
                 </b-col>
-
-                <b-col class="posts">
-                    <router-link to="/post">
-                        <b-button variant="light" class="publication">Escribe tu publicación</b-button>
-                    </router-link>
-
-                    <router-link to="/badwords">
-                        <b-button variant="dark" v-if="user.role ==='ADMIN'">Palabras reservadas</b-button>
-                    </router-link>
-
-                    <h2>Tus publicaciones</h2>
-                    <b-card class="card" bg-variant="white" text-variant="dark" v-for="(post) in posts"
-                        v-bind:key="post._id">
-                        <p>{{post.title}}</p>
-                        <router-link :to="`/post/${post._id}`">
-                            <b-button variant="light">Ver más</b-button>
-                        </router-link>
-                        <b-button variant="light" v-on:click="deleteData(post._id)">Eliminar</b-button>
-                        <router-link class="router" :to="`/edit/${post._id}`">
-                            <b-button variant="dark">Editar</b-button>
-                        </router-link>
-                    </b-card>
-                </b-col>
             </b-row>
+            </div>
     </div>
-
 </template>
 
 <script>
@@ -117,45 +123,8 @@
 </script>
 
 <style scoped>
-    a {
-        font-size: 15px;
-        padding: 5px;
-    }
-
-    @media (min-width: 1200px) {
-
-        .card {
-            width: 700px;
-        }
-
-        h2 {
-            padding: 20px;
-            text-align: initial;
-        }
-
-        .posts {
-            margin-top: 50px;
-            text-align: initial;
-        }
-
-        b-text {
-            margin-left: 5px;
-            margin-top: 2px;
-            font-size: 23px;
-        }
-
-        h1 {
-            margin-top: 30px;
-        }
-
-        a {
-            font-size: 20px;
-            padding: 5px;
-        }
-        .profile{
-            margin-top: 50px;
-            margin-left: 40px;
-        }
-
-    }
+.user-welcome {
+  margin: 20px 0 0;
+  text-align:left;
+}
 </style>

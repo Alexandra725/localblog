@@ -1,13 +1,16 @@
 <template>
+<b-container>
   <div class="hello">
     <h1>{{ msg }}</h1>
     <p> Inicia sesión 
-      <b-button pill variant="outline-secondary"><router-link to="/login">Login</router-link></b-button>
+      <router-link to="/login"><b-button pill variant="outline-secondary">Login</b-button></router-link>
     </p>
     <p>Si no tienes cuenta, regístrate
-      <b-button pill variant="outline-secondary"><router-link to="/register">Regístrate</router-link></b-button>
+      <router-link to="/register"><b-button pill variant="outline-secondary">Regístrate</b-button></router-link>
     </p>
   </div>
+</b-container>
+
 </template>
 
 <script>
@@ -25,6 +28,7 @@ export default {
 
 .hello{
   margin-top: 10%;
+  align-content: center;
 }
 
 h1{

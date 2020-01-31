@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <HelloWorld msg="LocalBlog "/>
+    <HelloWorld msg="Bloggy "/>
   </div>
 </template>
 
@@ -15,3 +15,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.home {
+  text-align: center;
+}
+</style>

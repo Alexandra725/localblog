@@ -1,25 +1,27 @@
 <template>
-<header>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="/">LocalBlog</a>
-    <ul class="navbar-nav">
+<div class="container">
+  <a class="navbar-brand">Bloggy</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       <li class="nav-item active">
-        <a class="link" href="/posts">Posts</a>
+        <a class="nav-link" href="/posts">Posts <span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item active">
-        <a class="link" href="/perfil">Perfil</a>
-      </li>
-      <li class="nav-item active">
-        <a class="link" href="/post">Publica</a>
-      </li>
-      <li>
-        <b-button variant="outline-info" class="mb-2" v-on:click="logout">
-      <b-icon icon="power"></b-icon> Logout
-    </b-button>
+      <li class="nav-item">
+        <a class="nav-link" href="/perfil">Perfil</a>
       </li>
     </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <a class="btn btn-success mr-sm-2" href="/post" role="button">Publicar</a>
+      <b-button variant="btn btn-outline-secondary my-2 my-sm-0" type="submit" v-on:click="logout">Logout</b-button>
+    </form>
+  </div>
+</div>
 </nav>
-</header>
 </template>
 
 <script>
@@ -44,41 +46,28 @@ export default {
 
 @import url('https://fonts.googleapis.com/css?family=Homemade+Apple|Mr+Dafoe|Mr+De+Haviland|Raleway&display=swap');
 
+.main-header {
+  background:#343a40;
+}
+
+.main-header .navbar-nav {
+  flex-direction: row;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .navbar-brand {
   font-family: 'Mr De Haviland';
-  font-size: 20px;
+  font-size: 48px;
   font-weight: cursive;
-  margin: 0 auto;
+  color: #fff !important;
 }
-.navbar-nav .link{
-  font-size: 15px;
-  text-decoration: none;
-  color: aliceblue;
 
+.navbar-nav .nav-item a {
+  color: #fff;
+  font-size: 16px;
+  margin-left: 10px;
 }
- @media (min-width: 1200px) { 
 
-  .navbar {
-    color: #2c3e50;
-    height: 7%;
-    padding-top: 3px;
-    width: 100%;
-    opacity: 50%;
-  }
-
-  .navbar-brand {
-    font-family: 'Mr De Haviland';
-    font-size: 50px;
-    font-weight: cursive;
-    color: #ffffff;
-    margin: 0 auto;
-    text-align: center;
-  }
-  .navbar-nav .link {
-    padding: 5px;
-    font-size: 20px;
-  }
-
-
- }
 </style>

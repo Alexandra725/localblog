@@ -1,27 +1,35 @@
 <template>
   <div>
     <NavBar></NavBar>
-    <h1>LocalBlog</h1>
-    <b-form class='login'>
-      <label for="text-password">Email</label>
-      <b-input id="inline-form-input-name" class="mb-2 mr-sm-2 mb-sm-0" placeholder="Email" v-model="email"></b-input>
-      <div>
-        <b-form @submit.prevent.stop>
-          <label for="text-password">Password</label>
-          <b-input type="password" id="text-password" aria-describedby="password-help-block" placeholder="Password"
-            v-model="pass"></b-input>
-        </b-form>
+    <div class="container">
+     <div class="row justify-content-md-center">
+     <div class="col-md-6">
+      <div class='login-form'>
+          <form>
+          <div class="form-group">
+            <label for="InputEmail1">Email address</label>
+            <b-input v-model="email" class="form-control" id="InputEmail1" aria-describedby="emailHelp" placeholder="Enter email"></b-input>
+          </div>
+          <b-form @submit.prevent.stop>
+          <div class="form-group">
+            <label for="InputPassword1">Password</label>
+            <b-input v-model="pass" class="form-control" id="InputPassword1" type="password" placeholder="Password"></b-input>
+          </div>
+          </b-form>
+          <div class="form-check">
+            <b-form-checkbox class="form-check-input" id="rememberMe">Remember me</b-form-checkbox>
+          </div>
+          <div class="mt-3">
+            <b-button variant="btn btn-primary" v-on:click="login">Login</b-button>
+          </div>
+        </form>
+          <hr class="my-3">
+          <p>Si no tienes cuenta, <a href="/register" class="btn-link">regístrate!</a></p>
       </div>
-      <b-form-checkbox class="mb-2 mr-sm-2 mb-sm-0">Remember me</b-form-checkbox>
-      <b-button pill variant="outline-secondary" v-on:click="login">Login</b-button>
-    </b-form>
-    <p>Si no tienes cuenta, regístrate
-      <b-button pill variant="outline-secondary">
-        <router-link class="router" to="/register">Regístrate</router-link>
-      </b-button>
-    </p>
+      </div>
+      </div>
+      </div>
   </div>
-
 </template>
 
 <script>
@@ -64,52 +72,9 @@
 </script>
 
 <style scoped>
-  @import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
-
-  #app {
-    font-family: 'Raleway', cursive;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-  }
-
-  .login {
-    display: inline-block;
-    width: 40%;
-  }
-
-  h1 {
-    margin-top: 7%;
-    font-family: 'Mr De Haviland', cursive;
-    font-size: 100px;
-  }
-
-  p {
-    padding: 50px;
-  }
-
-
-  @media (min-width: 1200px) {
-
-    .login {
-      display: inline-block;
-      width: 40%;
-    }
-
-    h1 {
-      margin-top: 7%;
-      font-family: 'Mr De Haviland', cursive;
-      font-size: 200px;
-    }
-
-    p {
-      padding: 50px;
-    }
-
-    .router {
-      text-decoration: none;
-      color: beige;
-    }
+  @import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+  .login-form {
+    margin: 50px auto 0;
   }
 </style>
+
