@@ -4,6 +4,36 @@ const ObjectId = require('mongodb').ObjectId;
 
 const tokenVerify = require('../middleware/tokenVerify.js')
 
+//#region Load a ADMIN user
+
+router.get('/', async (req, res) => {
+    const defaultUser = 
+    {
+        name: "Admin",
+        lastName: "Admin",
+        nickName: "Admin",
+        email: "admin@admin.com",
+        pass: bcryptjs.hashSync("1234"),
+        role: "ADMIN"
+    }
+    await req.app.locals.dbo.collection('users').find({}).toArray((err, users) => {
+        console.log('users', users)
+
+    if(users.length === 0) {
+        req.app.locals.dbo.collection('users').insert(defaultUser, (err, user) => {
+            if (err) {
+               res.send(err)
+            }
+            console.log("admin inserted:", defaultUser);
+        })
+    } else {
+        console.log('error insert a user')
+    }
+});
+});
+
+//#endregion
+
 //#region perfil usuario
 
 router.get('/perfil', tokenVerify, async (req, res) => {
@@ -28,5 +58,7 @@ router.get('/perfil', tokenVerify, async (req, res) => {
 });
 
 //#endregion
+
+
 
 module.exports = router;
