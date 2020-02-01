@@ -2,8 +2,6 @@ const express = require('express');
 const MongoClient = require('mongodb').MongoClient;
 const url = "mongodb://localhost:27017/blogDB";
 const app = express();
-const fs = require('fs');
-const https = require('https');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
@@ -41,13 +39,6 @@ MongoClient.connect(url, { useUnifiedTopology: true }, (err, db)=> {
             console.log('Node listen in 3000.')
         });
     }
-});
-
-https.createServer({
-    key: fs.readFileSync('server.key'),
-    cert: fs.readFileSync('server.cert')
-}, app).listen(3443, () => {
-    console.log("Https server started in port 3443");
 });
 
 module.exports = app; 

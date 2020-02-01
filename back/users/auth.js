@@ -25,7 +25,6 @@ router.post('/login', (req, res) => {
                             let token = jwt.sign({user: data}, config.key, {
                                 expiresIn: 60 * 60 * 24 * 30
                             });
-                            console.log('ha ido bien'),
                             res.status(200).json({
                                 success: true,
                                 user: data,
@@ -38,7 +37,6 @@ router.post('/login', (req, res) => {
                                 success: true,
                                 msg: "You have not access"
                             });
-                            console.log('no ha ido bien')
                         }
                     })
                     .catch((Error) => {

@@ -20,7 +20,6 @@ router.post('/register',(req, res) => {
     };
     req.app.locals.dbo.collection('users').insertOne(newUser);
     res.send(newUser);
-    console.log('registro bien hecho')
 });
 
 module.exports = router;

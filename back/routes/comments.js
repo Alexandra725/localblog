@@ -4,7 +4,7 @@ const router = express.Router();
 
 const validator = require('../functions/validator');
 const tokenVerify = require('../middleware/tokenVerify.js');
-const autorComment = require('../middleware/adminPubliRole.js');
+const autorComment = require('../middleware/author.js');
 const badWords = require('../functions/badWords.js')
 
 //#region  POST comentario en un post
