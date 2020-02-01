@@ -23,7 +23,7 @@
             <b-form-checkbox class="form-check-input" id="rememberMe">Remember me</b-form-checkbox>
           </div>
           <div class="mt-3">
-            <b-button variant="btn btn-primary" v-on:click="login">Login</b-button>
+            <b-button id="login" variant="btn btn-primary" v-on:click="login">Login</b-button>
           </div>
         </form>
           <hr class="my-3">

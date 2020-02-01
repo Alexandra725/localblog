@@ -9,7 +9,7 @@
             <b-form-input class="title" v-model="title">{{post.title}}</b-form-input>
             <b-form-textarea class="text" v-model="text">{{post.text}}</b-form-textarea>
           </form>
-          <b-button pill variant="outline-secondary" v-on:click="publicPost">Publicar</b-button>
+          <b-button class="publish" pill variant="outline-secondary" v-on:click="publicPost">Publicar</b-button>
         </b-col>
       </b-row>
     </b-container>

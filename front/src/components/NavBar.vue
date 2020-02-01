@@ -9,7 +9,7 @@
   <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       <li class="nav-item active">
-        <a class="nav-link" href="/">Posts <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/">Posts<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item" >
         <a class="nav-link" href="/perfil" v-if="token">Perfil</a>
@@ -18,7 +18,7 @@
     <form class="form-inline my-2 my-lg-0">
       <a class="btn btn-success mr-sm-2" href="/post" role="button" v-if="token">Publicar</a>
       <b-button variant="btn btn-outline-secondary my-2 my-sm-0" type="submit" v-on:click="logout" v-if="token">Logout</b-button>
-      <router-link to="/login"><b-button variant="btn btn-outline-secondary my-2 my-sm-0" type="submit" v-if="!token">Login</b-button></router-link>
+      <router-link to="/login"><b-button class="login" variant="btn btn-outline-secondary my-2 my-sm-0" type="submit" v-if="!token">Login</b-button></router-link>
     </form>
   </div>
 </div>

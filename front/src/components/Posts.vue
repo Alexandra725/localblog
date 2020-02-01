@@ -1,7 +1,6 @@
 <template>
   <div>
-    <NavBar></NavBar>
-    
+    <NavBar class="nav"></NavBar>
     <b-card id="title" bg-variant="light" text-variant="dark"  v-for="post in posts"
       v-bind:key="post._id"
       >
