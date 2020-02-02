@@ -27,28 +27,28 @@ describe('My First Test', () => {
   });
   
   it('Add a post', () => {
-    cy.contains('Publicar').click()
+    cy.contains('Publicar').click({ force: true })
     cy.get('.title')
     .type('Esto es un post con Cypress')
     cy.get('.description')
     .type('Esta es la descripción con Cypress')
     cy.get('.text')
     .type('Pues eso, un post con Cypress')
-    cy.get('.publish').click()
+    cy.get('.publish').click({ force: true })
   });
 
   it('goes to first post and add a comment whitout diry words',() =>{
     cy.login()
-    cy.contains('Posts').click()
-    cy.contains('post').click()
+    cy.contains('Posts').click({ force: true })
+    cy.contains('post').click({ force: true })
     cy.get('.textComment').type('Comentario de prueba sin palabras ofensivas', { force: true })
     cy.get('.button').click({ force: true })
   });
 
   it('goes to first post and add a comment whit diry words',() =>{
     cy.login()
-    cy.contains('Posts').click()
-    cy.contains('post').click()
+    cy.contains('Posts').click({ force: true })
+    cy.contains('post').click({ force: true })
     cy.get('.textComment').type('Lo veo todo muy negro', { force: true })
     cy.get('.button').click({ force: true })
   });
