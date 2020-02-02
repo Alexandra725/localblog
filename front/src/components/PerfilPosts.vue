@@ -1,18 +1,24 @@
 <template>
   <div>
     <NavBar></Navbar>
-    <b-container class="bv-example-row">
+    <b-container class="mt-4">
       <b-row>
         <b-col sm="9">
-          <h1>Escribe tu publicación!</h1>
+          <h4 class="display-6">Nueva publicación</h4>
+          <hr class="my-3">
           <form>
-            <b-form-input class="title" v-model="title">{{post.title}}</b-form-input>
-            <b-form-textarea class="text" v-model="text">{{post.text}}</b-form-textarea>
+            <label for="title">Título</label>
+            <b-form-input class="form-control title mb-3" v-model="title">{{post.title}}</b-form-input>
+            <label for="description">Descripción</label>
+            <b-form-input class="form-control description mb-3" v-model="description">{{post.description}}</b-form-input>
+            <label for="description">Artículo</label>
+            <b-form-textarea class="text mb-3" v-model="text" rows="14">{{post.text}}</b-form-textarea>
           </form>
-          <b-button class="publish" pill variant="outline-secondary" v-on:click="publicPost">Publicar</b-button>
+          <b-button class="publish btn-block" variant="outline-success" v-on:click="publicPost">Publicar</b-button>
         </b-col>
       </b-row>
     </b-container>
+    <Footer></Footer>
   </div>
 </template>
 
@@ -20,15 +26,18 @@
 <script>
   import axios from 'axios';
   import NavBar from './NavBar';
+  import Footer from './footer'
 
   export default {
     components: {
-      'NavBar': NavBar
+      'NavBar': NavBar,
+      'Footer': Footer
     },
     data() {
       return {
         post: '',
         title: '',
+        description:'',
         text: '',
         error: ''
       }
@@ -43,13 +52,11 @@
         };
         axios.post('http://localhost:3000/post', {
               title: this.title,
+              description: this.description,
               text: this.text
             },
             config)
           .then(response => {
-            /* eslint-disable no-console */
-            console.log('response  ', response);
-            /* eslint-enable no-console */
             this.$router.push('/post/' + response.data._id)
           }).catch(err => {
             /* eslint-disable no-console */
@@ -60,62 +67,3 @@
     },
   }
 </script>
-
-<style scoped>
-  h1 {
-    font-size: 20px;
-    padding: 20px;
-  }
-
-  .title {
-    height: 50px;
-  }
-
-  .text {
-    margin-top: 20px;
-    height: 400px;
-  }
-
-  button {
-
-    margin-top: 30px;
-    padding: 10px;
-  }
-
-  #comments {
-    margin-top: 30px;
-    height: 300px;
-    width: 300px;
-  }
-
-  @media (min-width: 1200px) {
-
-
-    h1 {
-      font-size: 30px;
-      padding: 45px;
-    }
-
-    .title {
-      height: 70px;
-
-    }
-
-    .text {
-      margin-top: 20px;
-      height: 600px;
-      vertical-align: top;
-      display: inline-block;
-    }
-
-    button {
-      margin-top: 20px;
-      padding: 10px;
-    }
-
-    #comments {
-      align-content: center;
-    }
-
-  }
-</style>

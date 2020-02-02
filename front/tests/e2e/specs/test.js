@@ -30,6 +30,8 @@ describe('My First Test', () => {
     cy.contains('Publicar').click()
     cy.get('.title')
     .type('Esto es un post con Cypress')
+    cy.get('.description')
+    .type('Esta es la descripción con Cypress')
     cy.get('.text')
     .type('Pues eso, un post con Cypress')
     cy.get('.publish').click()

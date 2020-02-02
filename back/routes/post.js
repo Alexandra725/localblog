@@ -11,6 +11,7 @@ router.get('/posts', async (req, res) => {
   await req.app.locals.dbo.collection('posts').find({}, {
         projection: {
             title: 1,
+            description:1,
             name: 1,
             date:1,
             _id: 1
@@ -31,6 +32,7 @@ router.post('/post', tokenVerify, async (req, res) => {
         name: req.user.name,
         nickname: req.user.nickName,
         title: req.body.title,
+        description: req.body.description,
         text: req.body.text,
         date: date.toLocaleDateString("es-ES", options)
     };

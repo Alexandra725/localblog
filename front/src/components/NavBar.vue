@@ -1,28 +1,30 @@
 <template>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-<div class="container">
-  <a class="navbar-brand">Bloggy</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+<nav class="navbar navbar-expand-lg navbar-dark bg-midnight">
+  <div class="container">
+    <a class="navbar-brand">
+      <img src="../assets/img/bloggy-logo.svg" class="logo" alt="logo" title="Bloggy">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-  <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-      <li class="nav-item active">
-        <a class="nav-link" href="/">Posts<span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item" >
-        <a class="nav-link" href="/perfil" v-if="token">Perfil</a>
-      </li>
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <a class="btn btn-success mr-sm-2" href="/post" role="button" v-if="token">Publicar</a>
-      <b-button variant="btn btn-outline-secondary my-2 my-sm-0" type="submit" v-on:click="logout" v-if="token">Logout</b-button>
-      <router-link to="/login"><b-button class="login" variant="btn btn-outline-secondary my-2 my-sm-0" type="submit" v-if="!token">Login</b-button></router-link>
-    </form>
-  </div>
-</div>
-</nav>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li class="nav-item active">
+          <a class="nav-link" href="/">Posts<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item" >
+          <a class="nav-link" href="/perfil" v-if="token">Perfil</a>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <a class="btn btn-success mr-sm-2" href="/post" role="button" v-if="token">Publicar</a>
+        <b-button variant="btn btn-outline-secondary my-2 my-sm-0" type="submit" v-on:click="logout" v-if="token">Logout</b-button>
+        <router-link class="login" to="/login"><b-button variant="btn btn-outline-secondary my-2 my-sm-0" type="submit" v-if="!token">Login</b-button></router-link>
+      </form>
+    </div>
+  </div> <!-- end of .container -->
+</nav> <!-- end of .navbar -->
 </template>
 
 <script>
@@ -51,11 +53,10 @@ export default {
 
 
 <style>
-
 @import url('https://fonts.googleapis.com/css?family=Homemade+Apple|Mr+Dafoe|Mr+De+Haviland|Raleway&display=swap');
 
-.main-header {
-  background:#343a40;
+.bg-midnight {
+  background-color: #2c3e50;
 }
 
 .main-header .navbar-nav {
@@ -76,6 +77,17 @@ export default {
   color: #fff;
   font-size: 16px;
   margin-left: 10px;
+}
+
+.navbar .btn {
+  font-size: 14px;
+}
+
+.logo {
+  display: block;
+  width: 30px;
+  height: auto;
+  margin: 0;
 }
 
 </style>

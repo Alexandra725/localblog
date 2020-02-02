@@ -40,19 +40,21 @@
                 <b-button v-on:click="calcelEdit">Cancelar</b-button>
             </form>
         </div>
-
+    <Footer></Footer>
     </div>
 </template>
 
 
 <script>
     import NavBar from './NavBar';
+    import Footer from './footer';
     import axios from 'axios';
 
     export default {
         name: 'badwords',
         components: {
-            'NavBar': NavBar
+            'NavBar': NavBar,
+            'Footer': Footer
         },
         data() {
             return {

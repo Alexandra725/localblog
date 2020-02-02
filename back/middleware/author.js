@@ -7,7 +7,6 @@
     let commentId = req.params.id;
     let comment = await req.app.locals.dbo.collection('comments').findOne({_id: new ObjectId(commentId)});
     if (comment.userId.toString() === user._id) {
-        console.log('ENTRA') 
         next();
     } else {
         res.status(401).json({

@@ -29,7 +29,6 @@ router.post('/post/:id/comments',tokenVerify, async (req,res) => {
            await req.app.locals.dbo.collection('comments').insertOne(newComm);
             res.send(newComm);
         }).catch(err=>{
-            console.log('error',err)
             res.status(406).send(err);
         });
        }

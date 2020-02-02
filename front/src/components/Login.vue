@@ -32,17 +32,20 @@
       </div>
       </div>
       </div>
+    <Footer></Footer>
   </div>
 </template>
 
 <script>
   import NavBar from './NavBar';
+  import Footer from './footer'
   import axios from 'axios';
 
   export default {
     name: 'login',
     components: {
-      'NavBar': NavBar
+      'NavBar': NavBar,
+      'Footer': Footer
     },
     data() {
       return {
@@ -83,4 +86,3 @@
     margin: 50px auto 0;
   }
 </style>
-

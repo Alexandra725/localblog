@@ -1,42 +1,59 @@
 <template>
     <div>
         <NavBar></Navbar>
-        <b-container class="bv-example-row">
+        <b-container class="mt-5">
             <b-row>
-                <b-col cols="10">
-                    <a class="title">{{post.title}}</a>
-                    <p>Autor: {{userName}}</p>
+                <b-col cols="8">
+                    <h3 class="mb-3">{{post.title}}</h3>
                     <p class="text" disabled="">{{post.text}}</p>
-                </b-col>
-                <b-col cols="2" class="comment-publi">
-                    <p> Comentarios</p>
-                    <div v-for="comment in comments" v-bind:text="comment" v-bind:key="comment._id">
-                        <p class="name">{{comment.userName}}</p>
-                        <p class="date">{{comment.date}} </p>
-                        <p class="comment">{{comment.text}}</p>
+                    <div>
+                        <span class="badge">Publicado el {{post.date}}</span>
+                        <div class="float-right"><span class="badge">{{post.name}}</span></div>         
                     </div>
-                    <p>Publicar comentario</p>
-                    <b-form-textarea class="textComment" placeholder="Enter comment" v-model="textComment">
-                    </b-form-textarea>
+                </b-col>
+                <b-col cols="4" class="comment-publi">
+                    <p> Comentarios</p>
+                    <div class="card card-white comment mb-2" v-for="comment in comments" v-bind:text="comment" v-bind:key="comment._id">
+                        <div class="comment-heading">
+                            <div class="float-left image">
+                                <img src="https://upload.wikimedia.org/wikipedia/en/4/4d/Minions.png" class="img-circle avatar" alt="user profile image">
+                            </div>
+                            <div class="float-left meta">
+                                <div class="title h5">
+                                    <a href="#"><b>{{comment.userName}}</b></a>
+                                    hizo un comentrio.
+                                </div>
+                                <h6 class="text-muted time">{{comment.date}}</h6>
+                            </div>
+                        </div> 
+                        <div class="comment-description">
+                            <p class="comment">{{comment.text}}</p>
+                        </div>
+                    </div>
+
+                    <h6 class="mt-4">Publicar comentario</h6>
+                    <b-form-textarea class="form-control textComment" placeholder="Enter comment" v-model="textComment"></b-form-textarea>
                     <b-alert v-if="error" variant="danger" show dismissible>
-                      {{msgError}}:  Hay palabras que no estan permitidas. Revisa tu comentario
+                        {{msgError}}: Hay palabras que no estan permitidas. Revisa tu comentario
                     </b-alert>
-                    <b-button pill variant="outline-secondary" v-on:click="publicComment" class="button">Comentar
-                    </b-button>
+                    <b-button variant="outline-light" v-on:click="publicComment" class="button comment-btn mt-2">Comentar</b-button>
                 </b-col>
             </b-row>
         </b-container>
+        <Footer></Footer>
     </div>
 </template>
 
 <script>
     import NavBar from './NavBar';
+    import Footer from './footer'
     import axios from 'axios';
 
     export default {
         name: 'onePost',
         components: {
-            'NavBar': NavBar
+            'NavBar': NavBar,
+            'Footer': Footer
         },
         data() {
             return {
@@ -45,7 +62,7 @@
                 postId: '',
                 userName: '',
                 textComment: '',
-                msgError:'',
+                msgError: '',
                 error: false
             }
         },
@@ -62,16 +79,13 @@
                     }
                 };
                 const data = {
-                        text: this.textComment
-                    }
-                axios.post(`http://localhost:3000/post/${id}/comments`,data ,config)
+                    text: this.textComment
+                }
+                axios.post(`http://localhost:3000/post/${id}/comments`, data, config)
                     .then(
                         this.getOnePost()
                     )
                     .catch(err => {
-                                                /* eslint-disable no-console */
-                        console.log("err", err)
-                        /* eslint-enable no-console */
                         this.msgError = err;
                         this.alertError();
                     });
@@ -81,7 +95,6 @@
                 let id = this.$route.params.id;
                 axios.get(`http://localhost:3000/post/${id}`)
                     .then(response => {
-
                         this.postId = response.data.post._id;
                         this.post = response.data.post;
                         this.comments = response.data.comments;
@@ -99,53 +112,60 @@
 </script>
 
 <style scoped>
-    @media (min-width: 1200px) {
+.card-white .card-heading {
+  color: #333;
+  background-color: #fff;
+  border-color: #ddd;
+   border: 1px solid #dddddd;
+}
+.card-white  .card-footer {
+  background-color: #fff;
+  border-color: #ddd;
+}
+.card-white .h5 {
+    font-size:14px;
+    
+}
+.card-white .time {
+    font-size:12px;
+}
+.comment .comment-heading {
+  padding: 10px 7.5px;
+}
+.comment .comment-heading .avatar {
+  width: 48px;
+  height: 48px;
+  display: block;
+  margin-right: 10px;
+}
+.comment .comment-heading .meta .title {
+  margin-bottom: 0;
+}
+.comment .comment-heading .meta .title a {
+  color: black;
+}
+.comment .comment-heading .meta .title a:hover {
+  color: #aaaaaa;
+}
+.comment .comment-heading .meta .time {
+  margin-top: 8px;
+  color: #999;
+}
+.comment .comment-image .image {
+  width: 100%;
+  height: auto;
+}
+.comment .comment-description {
+  padding: 10px;
+}
+.comment .comment-description p {
+  font-size: 14px;
+  margin: 0;
+}
 
-        .bv-example-row {
-            margin-top: 70px;
-            width: 100%;
-        }
+.comment-btn {
+    font-size: 14px;
+    color: #000;
+}
 
-        .text {
-            margin-top: 20px;
-            height: 600px;
-        }
-
-        .col-comment {
-            width: auto;
-        }
-
-        .comment {
-            width: 200px;
-            height: auto;
-            background-color: rgb(181, 182, 182, 0.1);
-            text-align: center;
-        }
-
-        .name {
-            font-size: 20px;
-        }
-
-        .date {
-            font-size: 10px;
-            margin-top: -20px;
-        }
-
-        .comment-publi {
-            align-content: center;
-            margin: 0 auto;
-            width: 100%;
-            margin-right: -50px;
-        }
-
-        .title {
-            font-size: 55px;
-            font-family: 'Mr De Haviland', cursive;
-        }
-
-        .button {
-            margin-top: 6px;
-        }
-
-    }
 </style>

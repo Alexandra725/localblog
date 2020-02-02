@@ -49,17 +49,20 @@
   </div>
   </div>
   </div>
+  <Footer></Footer>
 </div>
 </template>
 
 <script>
 import axios from 'axios';
-import NavBar from "./NavBar";
+import NavBar from './NavBar';
+import Footer from './footer';
 
  export default {
    name: 'register',
    components: {
-     'NavBar': NavBar
+     'NavBar': NavBar,
+      'Footer': Footer
    },
     data() {
       return {

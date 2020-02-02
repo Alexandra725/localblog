@@ -7,7 +7,6 @@
     let postId = req.params.id;
     let post = await req.app.locals.dbo.collection('posts').findOne({_id: new ObjectId(postId)});
     if (post.userId.toString() === user._id) {
-        console.log('ENTRA') 
         next();
     } else {
         res.status(401).json({

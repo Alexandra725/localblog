@@ -4,30 +4,43 @@
         <b-alert v-if="error" variant="danger" show dismissible>
             {{msgError}}
         </b-alert>
-        <b-container class="bv-example-row">
+        <b-container class="mt-5">
             <b-row>
-                <b-col cols="10">
+                <b-col class="col col-md-12">
+                    <div class="user-welcome">
+                        <h4 class="display-6">Nuevo post</h4>
+                        <hr class="my-3">
+                    </div>
+                </b-col>
+            </b-row> <!-- end of .row -->
+            <b-row>
+                <b-col cols="12">
                     <b-input class="title" v-model="title"></b-input>
-                    <b-form-textarea class="text" v-model="text"></b-form-textarea>
-                    <b-button v-on:click="editPost(idPost)">Confirmar</b-button>
+                    <b-input class="description" v-model="description"></b-input>
+                    <b-form-textarea class="form-control text" v-model="text" rows="14"></b-form-textarea>
+                    <b-button class="btn btn-success" v-on:click="editPost(idPost)">Publicar</b-button>
                 </b-col>
             </b-row>
         </b-container>
+        <Footer></Footer>
     </div>
 </template>
 
 <script>
     import NavBar from './NavBar';
+    import Footer from './footer';
     import axios from 'axios';
 
     export default {
         name: 'onePost',
         components: {
-            'NavBar': NavBar
+            'NavBar': NavBar,
+            'Footer': Footer
         },
         data() {
             return {
                 text: '',
+                description: '',
                 title: '',
                 idPost: '',
                 error: false,
@@ -47,6 +60,7 @@
                 };
                 const data = {
                     title: this.title,
+                    description: this.description,
                     text: this.text
                 }
                 axios.put(`http://localhost:3000/post/${id}`, data, config)
@@ -64,6 +78,7 @@
                 axios.get(`http://localhost:3000/post/${id}`)
                     .then(response => {
                         this.title = response.data.post.title;
+                        this.description = response.data.post.description;
                         this.text = response.data.post.text;
                         this.idPost = response.data.post._id;
                     })
@@ -78,36 +93,5 @@
 </script>
 
 <style scoped>
-    @media (min-width: 1200px) {
-
-        .bv-example-row {
-            margin-top: 70px;
-            width: 100%;
-        }
-
-        .text {
-            margin-top: 20px;
-            height: 600px;
-        }
-
-
-        .name {
-            font-size: 20px;
-        }
-
-        .date {
-            font-size: 10px;
-            margin-top: -20px;
-        }
-
-        .title {
-            font-size: 55px;
-            font-family: 'Mr De Haviland', cursive;
-        }
-
-        .button {
-            margin-top: 6px;
-        }
-
-    }
+    
 </style>
