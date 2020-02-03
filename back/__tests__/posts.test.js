@@ -1,6 +1,5 @@
 const request = require('supertest');
 const app = require('../app.js');
-const validator = require('../functions/validator')
 
 describe('Testing API with an ADMIN user', () => {
     let token;
@@ -34,12 +33,46 @@ describe('Testing API with an ADMIN user', () => {
             text: 'post test'
         };
 
-        await agent.post('/post')
+       const { body } = await agent.post('/post')
             .send(newPost)
             .set('Authorization', 'bearer ' + token)
-            .expect(200)
+            expect(body.userId).toBeTruthy()
+            expect(body.name).toBe('Admin')
+
         done();
     });
 
+    test('Comment without offensive words',  async(done) => {
+        const post = await  agent.get('/posts');
+        const postId = post.body[0]._id;
+
+        var newComment = {
+            text: 'test comment'
+        };
+
+        agent.post('/post/' + postId + '/comments')
+            .send(newComment)
+            .set('Authorization', 'bearer ' + token)
+            .expect({status: 200})
+
+        done();
+    });
+
+    test('Comment with offensive words',  async(done) => {
+        const post = await  agent.get('/posts');
+        const postId = post.body[1]._id;
+        console.log(postId);
+
+        var newComment = {
+            text: 'test comment whith word negro'
+        };
+
+        agent.post('/post/' + postId + '/comments')
+            .send(newComment)
+            .set('Authorization', 'bearer ' + token)
+            .expect({status:406})
+
+        done();
+    });
 
 });

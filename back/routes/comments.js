@@ -27,7 +27,7 @@ router.post('/post/:id/comments',tokenVerify, async (req,res) => {
         validator(newComm.text, words)
         .then(async ()=>{
            await req.app.locals.dbo.collection('comments').insertOne(newComm);
-            res.send(newComm);
+            res.status(200).send(newComm);
         }).catch(err=>{
             res.status(406).send(err);
         });
