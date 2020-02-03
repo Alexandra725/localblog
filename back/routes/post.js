@@ -17,7 +17,7 @@ router.get('/posts', async (req, res) => {
             _id: 1
         }
     }).toArray((err, response) => {
-        res.json(response);
+        res.status(200).json(response);
     });
 });
 //#endregion

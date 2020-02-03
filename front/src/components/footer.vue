@@ -25,7 +25,7 @@ a:hover{
     text-decoration:none;
 }
 .section-padding {
-	padding: 20px 0;
+    padding: 20px 0;
 }
 .bottom {
     background-color: #2c3e50;

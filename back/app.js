@@ -26,18 +26,18 @@ app.use('/', require('./users/register.js'));
 app.use('/', require('./users/users.js'))
 
 
-MongoClient.connect(url, { useUnifiedTopology: true }, (err, db)=> {
+MongoClient.connect(url, { useUnifiedTopology: true },async (err, db)=> {
     if (err) {
         console.log('database is not connected')
         console.error(err);
     }
     else {
         console.log('connected!!');
-        dbo = db.db("blogDB");
+        dbo = await db.db("blogDB");
         app.locals.dbo = dbo;
-        app.listen(3000, ()=> {
-            console.log('Node listen in 3000.')
-        });
+       await app.listen(3000,  async()=> {
+                console.log('Node listen in 3000.')
+            });
     }
 });
 
