@@ -14,7 +14,6 @@ describe('Testing API with an ADMIN user', () => {
             })
             .end((err, res) => {
                 token = res.body.token
-
                 done();
             });
     });

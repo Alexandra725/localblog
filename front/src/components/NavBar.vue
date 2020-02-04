@@ -38,7 +38,7 @@ export default {
   methods: {
     logout(){
       localStorage.removeItem('token')
-      this.$router.push('/')
+      this.$router.go ('/')
     },
     verifyToken() {
       if(localStorage.getItem('token') === undefined || localStorage.getItem('token')=== null)

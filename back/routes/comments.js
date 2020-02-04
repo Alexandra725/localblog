@@ -21,9 +21,15 @@ router.post('/post/:id/comments',tokenVerify, async (req,res) => {
         text: data.text,
         date: date.toLocaleDateString("es-ES", options)
     };
-    await req.app.locals.dbo.collection('dirtyWords').find().toArray((err, words)=>{
-       if(words.length === 0) {
-           words = badWords
+    //console.log('comentario', newComm)
+    await req.app.locals.dbo.collection('dirtyWords').find().toArray((err, wordsDB)=>{
+        let words;
+        console.log(wordsDB)
+       if(wordsDB.length === 0) {
+           words = badWords;
+        } else {
+            words = wordsDB;
+        }
         validator(newComm.text, words)
         .then(async ()=>{
            await req.app.locals.dbo.collection('comments').insertOne(newComm);
@@ -31,7 +37,7 @@ router.post('/post/:id/comments',tokenVerify, async (req,res) => {
         }).catch(err=>{
             res.status(406).send(err);
         });
-       }
+    
     });
 });
 
